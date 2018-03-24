@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>You're a winner!</title>
+</head>
+<body>
+
+    {% if messages %}
+        {% for message in messages %}
+            <h2 style="color:green;">{{ message }}</h2>
+        {% endfor %}
+    {% endif %}
+
+    <h5>You better do a happy dance...</h5>
+    <h1>SUCCESS!</h1>
+</body>
+</html>

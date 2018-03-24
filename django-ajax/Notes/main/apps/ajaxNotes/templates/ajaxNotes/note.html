@@ -1,0 +1,15 @@
+
+{% if notes %}
+<div class="draggable {{notes.topic}} ui-widget-content" id="{{notes.id}}">
+    <h3>{{notes.title}}</h3>
+    <h4>{{notes.desc}}</h4>
+    <h6>{{notes.created_at}}</h6>
+    <h6>
+        <a href="/notes/delete/{{notes.id}}">delete</a>
+    </h6>
+</div>  
+{% endif %} 
+
+
+
+

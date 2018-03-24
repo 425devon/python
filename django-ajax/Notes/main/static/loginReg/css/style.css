@@ -1,0 +1,25 @@
+*{
+    font-family: 'Kalam', cursive;
+}
+.container{
+    width: 1000px;
+}
+.reg, .log{
+    display: inline-block;
+    border: 1px solid black;
+    width: 300px;
+    padding: 1em;
+    margin: 2em;
+}
+.log{
+    vertical-align: top;
+}
+form label,input{
+    display: block;
+}
+input{
+    margin-bottom: 1em;
+}
+h4{
+    color: red;
+}

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://fonts.googleapis.com/css?family=Kalam" rel="stylesheet">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <title>ajaxNote</title>
+    {% load static %}  
+    <link rel="stylesheet" href="{% static 'ajaxNotes/css/main.css' %}">
+    <script src="{% static 'ajaxNotes/scripts/myjs.js' %}"></script>
+</head>
+<body>
+        {% csrf_token %}
+    <div class="container" id="container">
+        <a id="logout" href="/notes/logout">Logout</a>
+        <div class="move" id="noteForm">
+            <form action="/notes/create" method="post" id="create">
+                {% csrf_token %}
+                <label for="topic">topic
+                <select name="topic" id="topic">
+                    <option value="algorithm">algorithms</option>
+                    <option value="django">django</option>
+                    <option value="python">python</option>
+                    <option value="project">project</option>
+                    <option value="self">note to self</option>
+                </select>
+                </label>
+                <label for="title">title <input type="text" name="title" required></label>
+                <textarea required name="desc" id="desc" placeholder="note....&#10;Hit ENTER to create a new note" cols="25" rows="12"></textarea>
+            </form>
+        </div>
+        <div class="allNotes" id="allNotes">
+            {% for note in notes %}
+                <div class="draggable {{note.topic}} ui-widget-content" id="{{note.id}}" style="left:{{note.left}}px; top:{{note.top}}px;">
+                    <h3>{{note.title}}</h3>
+                    <h4>{{note.desc}}</h4>
+                    <h6>{{note.created_at}}</h6>
+                    <h6>
+                        <a href="/notes/delete/{{note.id}}">delete</a>
+                    </h6>
+                </div>
+            {% endfor %}
+        </div>
+        <div classs="newNote"id="newNote"></div>
+    </div>
+</body>
+</html>
