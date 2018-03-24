@@ -1,0 +1,61 @@
+<html>
+<head>
+  <title>Friends</title>
+  <style>
+    *{
+      margin: 0 auto;
+    }
+    .container{
+      width: 960px;
+    }
+    table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 80%;
+    }
+    form{
+      width: 80%;
+    }
+    h1,h2{
+      margin-left: 50px;
+      padding: 2em;
+    }
+    td, th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+    }
+    
+    tr:nth-child(even) {
+        background-color: #dddddd;
+    }
+  </style>
+</head>
+<body>
+  <div class="cotainer">
+    <h1>Friends:</h1>
+      <!-- with all the data we can then construct a more structured output -->
+        <table>
+      
+          <tr>
+            <th>Friend_id:</th>
+            <th>Full Name:</th>
+            <th>Email:</th>
+            <th>created At:</th>
+            <th>Actions:</th>
+          </tr>
+      {% for friend in all_friends: %}
+          <tr>
+          <th>{{ friend['id'] }}</th>
+          <th>{{ friend['full_name'] }}</th>
+          <th>{{ friend['email'] }}</th>
+          <th>{{ friend['created_at'] }}</th>
+          <th><a href="/show/{{friend['id']}}">Show</a> &nbsp; <a href="/edit/{{friend['id']}}">Edit</a> &nbsp; <a href="/remove/{{friend['id']}}">Delete</a></th>
+          </tr>
+      {% endfor %}
+          </table>
+          <a href="/newUser">Add a new friend</a>
+    
+  </div>
+</body>
+</html>

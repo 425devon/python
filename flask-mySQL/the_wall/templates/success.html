@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Coding Dojo Wall</title>
+    <style>
+        *{
+            font-family: sans-serif;
+        }
+        .post{
+            margin-top: 0%;
+            border-top: 3px solid silver;
+        }
+        .container h1,h3{
+            display: inline-block;
+        }
+        .container h1{
+            margin-left: 1em;
+        }
+        #greeting{
+            margin-left: 50%;
+        }
+        .container a{
+            display: inline;
+            margin-left: 10%;
+        }
+        form, #pm{
+            margin-top: 2em;
+            margin-left: 20%;
+        }
+        form input{
+            display: block;
+            margin: 1em;
+            border-color: silver; 
+            border-radius: 5px 5px;
+            box-shadow: 3px 3px silver; 
+        }
+        .wall{
+            margin-top: 2em;
+            margin-left: 10%;
+        }
+        .wall h3{
+            display: inline-block;
+        }
+        .date{
+            margin-left: 5%;
+        }
+        .wall p{
+            border: 1px solid silver;
+            border-radius: 5px;
+            padding: 1em;
+            margin-right: 2em;
+        }
+        #pc{
+            display: block;
+        }
+        #comment{
+            margin-left: -25%;
+        }
+        #comment textarea{
+            border: 1px solid silver;
+            border-radius: 5px;
+            box-shadow: 3px 3px silver;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Coding Dojo Wall</h1>
+        <h3 id="greeting">Welcome {{session['first_name']}}</h3>
+        <a href="/logout">log out</a>
+
+        <div class="post">
+            <h2 id="pm">Post a message</h2>
+            <form action="/post" method="post">
+                <textarea name="message" id="message" cols="100" rows="5"></textarea>
+                <input type="submit" value="Post a message">
+            </form>
+        </div>
+
+        <div class="wall">
+            {% for post in all_posts: %}
+                <h3>{{post['user_name']}} - </h3>
+                <h3 class="date">{{post['post_at']}}</h3>
+                <p>{{post['message']}}</p>
+                    {% for comment in all_comments: %}
+                        {% if comment.message_id == post.id %}
+                            <h3>{{comment['com_name']}} -</h3>
+                            <h3 class="date">{{comment['com_at']}} </h3>
+                            <p>{{comment['comment']}}</p>
+                        {% endif %}
+                    {% endfor %}
+                <div id="comment">
+                    <form action="/pcomment" method="post">
+                    <input type="hidden" name="action" value="{{post['id']}}">
+                    <h3 id="pc">Post a commet</h3>
+                    <textarea name="comment" cols="100" rows="2"></textarea>
+                    <input type="submit" value="Post a comment">
+                    </form>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>

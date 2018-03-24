@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>login or register</title>
+    <style>
+    *{
+        font-family: sans-serif;
+        border-color: silver;
+    }
+    .container{
+        margin-top: 2%;
+        border-top: 3px solid silver;
+    }
+    form, h3, h1{
+        margin-left: 5%;
+    }
+    form{
+        width: 225px;
+        display: inline-block;
+        padding-left: 2em;
+    }
+    #reg input{
+        margin: 1em;
+    }
+    input{
+        margin-bottom: 1em;
+        margin-top: 1em;
+    }
+    #heading{
+        margin-left: -80%;
+        margin-bottom: 1em;
+        text-align: center;
+    }
+    input{
+        box-shadow: 3px 3px;
+        border-radius: 5px; 
+    }
+    #flash{
+        display: inline-block;
+        margin-left: 35%
+    }
+    #login{
+        display: inline-block;
+    }
+    </style>
+</head>
+<body>
+    <h1 id="heading">Coding Dojo <br>Wall</h1>
+    <div class="container">
+            <h2 id="flash">
+                    {% with messages = get_flashed_messages() %}
+                        {% if messages %}
+                            {% for message in messages %}
+                                <p>{{message}}</p>
+                            {% endfor %}
+                        {% endif %}
+                    {% endwith %}
+                </h2>
+       <h3>login:</h3>
+        <form action="/login" method="post" id="login">
+            <input type="hidden" name="form" value="login" />
+            <label for="email">Email Address:</label>
+            <input type="email" name="email">
+            <label for="password">Password:</label>
+            <input type="password" name="password" id="password">
+            <input type="submit" value="submit">
+        </form>
+        <h1>Not a user? Register Here:</h1>
+        <form action="/register" method="post" id="reg">
+            <input type="hidden" name="register" value="register" />
+
+            <label for="first_name">First Name:</label>
+            <input type="text" name="first_name" id="first_name">
+
+            <label for="last_name">Last Name:</label>
+            <input type="text" name="last_name" id="last_name">
+
+            <label for="email">Email:</label> 
+            <input type="email" name="email">
+            <label for="password">Password:</label>
+            <input type="password" name="password" id="password">
+            <label for="cpassword">Confirm Password:</label>
+            <input type="password" name="cpassword" id="cpassword">
+            <input type="submit" value="submit">
+        </form>
+        <br>
+    </div> 
+</body>
+</html>

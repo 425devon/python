@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Email validator</title>
+</head>
+<body>
+   <div class="container">
+        <form action="/validate" method="post">
+            <label for="email">Email Address:</label>
+            <input type="email" name="email">
+            <input type="submit" value="submit">
+        </form>
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                    <p>{{message}}</p>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+        <br>
+        <h2>Emails</h2>
+        <ul>
+            {% for emails in all_emails: %}
+                <li>{{ emails['email'] }}&nbsp;&nbsp;&nbsp;&nbsp;{{emails['created_at']}}</li>
+            {% endfor %}
+        </ul>
+   </div> 
+</body>
+</html>
