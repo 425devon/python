@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dojo Survey Results</title>
+    <style>
+        *{
+            margin: 0 auto;
+        }
+        #container{
+            width: 500px;
+            height: 300px;
+            margin-top: 2em;
+            background-color: rgb(255, 88, 88);
+
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <h2>Name: {{ session['name'] }}</h2>
+        <h2>location: {{ session['location'] }}</h2>
+        <h2>Favorite Language: {{ session['language'] }}</h2>
+        <h2>Your comment:</h2>
+        <p>{{ session['comment'] }}</p>
+    </div>
+</body>
+</html>

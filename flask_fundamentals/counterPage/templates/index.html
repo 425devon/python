@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Counter</title>
+    <style>
+        *{
+            margin: 0 auto;
+        }
+        h1,h2,h3,form{
+            padding-top: 2em;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h1>This sites been viewed:</h1>
+    <h2>{{session['counter']}}</h2>
+    <h3>Times!</h3>
+    <form action="/add" method="post">
+        <button name="add">Add Two!</button>
+    </form>
+    <form action="/reset" method="post">
+        <button name="reset">Reset Counter</button>
+    </form>
+</body>
+</html>
