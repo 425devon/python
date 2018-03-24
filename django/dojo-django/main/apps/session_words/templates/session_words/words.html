@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Session Words</title>
+    <style>
+        *{
+            margin: 0 auto;
+        }
+        .container{
+            margin-top: 4em;
+
+        }
+        .addWord{
+            
+            display: inline-block;
+            border-right: 3px solid green; 
+            margin-left: 2em;
+            margin-right: 4em;
+        }
+
+        .addWord form input, h2{
+            display:block;
+            margin: 1em;
+        }
+        .showWord{
+            margin-top: 2em;
+            vertical-align: top;
+            display: inline-block;
+            width: 600px;
+        }
+        .showWord input{
+            margin-left: 300px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="addWord">
+            <h2>Add a new word</h2>
+            <form action="/session_words/pickword" method="post">
+                {% csrf_token %}
+                <input type="text" name="word">
+                <br>
+                <h4>Choose a Color:</h4>
+                <br>
+                <h4>Red:</h4><input type="radio" name="color" value="red" checked="checked">
+                <h4>Green:</h4><input type="radio" name="color" value="green">
+                <h4>Blue:</h4><input type="radio" name="color" value="blue">
+                <h4>Show in BIG font:</h4> <input type="checkbox" name="big" value="big">
+                <br>
+            
+                <input type="submit" value="Add Word!">
+            </form>
+        </div>
+        <div class="showWord">
+            <form action="/session_words/clear" method="post">
+                {% csrf_token %}
+                <input type="submit" value="Clear Session">
+            </form>
+            {% for word in request.session.allWords %}
+            <p style="color:{{word.color}}; font-size: {{word.size}}px;">{{word.word}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{word.created_at}}</p>
+            {% endfor %}
+
+        </div>
+    </div>
+</body>
+</html>

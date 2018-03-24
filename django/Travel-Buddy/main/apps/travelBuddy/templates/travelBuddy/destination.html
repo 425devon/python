@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <title>Distination</title>
+</head>
+<body>
+    <div class="container">
+        <h2><a href="/travels">Home</a></h2>
+        <h2><a href="/travels/logout">Logout</a></h2>
+        <div class="about">
+            <h1>{{dest.destination}}</h1>
+            <h3>Planned By: &nbsp;{{dest.creator.first_name}}</h3>
+            <h3>Description: &nbsp;{{dest.desc}}</h3>
+            <h3>Travel Date From: &nbsp;{{dest.dateFrom}}</h3>
+            <h3>Travel Date To: &nbsp;{{dest.dateTo}}</h3>
+        </div>
+        <div class="others">
+            <h1>Other User's joining the trip:</h1>
+            <ul>
+            {% for p in members %}
+                <li>{{p.member.first_name}}</li>
+            {% endfor %}
+            </ul>
+        </div>
+    </div>
+</body>
+</html>

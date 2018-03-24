@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <title>Add Plan</title>
+</head>
+<body>
+    <div class="container">
+        <h2><a href="/travels">Home</a></h2>
+        <h2><a href="/travels/logout">Logout</a></h2>
+        <div class="addForm">
+            <form action="/travels/newTrip" method="post">
+                {% csrf_token %}
+                <label for="destination">Destination:<input type="text" name="destination"></label>
+                <label for="desc">Description:<input type="text" name="desc"></label>
+                <label for="dateFrom">Travel Date From: <input type="date" name="dateFrom" id="datefrom"></label>
+                <label for="dateTo">Travel Date From: <input type="date" name="dateTo" id="dateTo"></label>
+                <input type="submit" value="Add">
+            </form>
+        </div>
+        {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+    </div>
+    
+</body>
+</html>

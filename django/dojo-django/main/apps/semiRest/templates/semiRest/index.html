@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Users Index</title>
+</head>
+<body>
+    <div class="container">
+        <table>
+            <tr><th>ID</th><th>Full Name</th><th>Created At</th><th>Actions</th></tr>
+        {% for user in users%}
+        <tr>
+            <td>{{user.id}}</td>
+            <td>{{user.first_name}} &nbsp; {{user.last_name}}</td>
+            <td>{{user.created_at}}</td>
+            <td>
+                <a href="/rest/{{user.id}}">Show</a>
+                <a href="/rest/{{user.id}}/edit">Edit</a>
+                <a href="/rest/{{user.id}}/destroy">Delete</a>
+            
+            </td>
+        </tr>
+        {% endfor %}
+        </table>
+        <a href="/rest/add">Add a new user</a>
+    </div>
+</body>
+</html>

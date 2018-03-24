@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Survey Form</title>
+    <style>
+        *{
+            margin: 0 auto;
+        }
+        .container{
+            margin-top: 4em;
+        }
+        form label, h3{
+            display: block;
+            margin-top: 2em;
+            margin-left: 4em;
+        }
+        #sub{
+            margin-left: 250px;
+            margin-top: 2em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <form action="/surveys/process" method="post">
+            {% csrf_token %}
+        <label for="name">Your Name:<input type="text" name="name"></label>
+        <label for="location">Dojo location: <select name="location" id="location">
+            <option value="Seattle">Seattle</option>
+            <option value="dallas">Dallas</option>
+            <option value="chicago">Chicago</option>
+            <option value="tulsa">Tulsa</option>
+        </select></label>
+        <label for="language">Favorite language: <select name="language" id="language">
+            <option value="python">python</option>
+            <option value="javascript">javaScript</option>
+            <option value="nodejs">nodejs</option>
+            <option value="unkown">Not sure</option>
+        </select></label>
+        <h3>Comments:</h3>
+        <label for="Comment">
+            <textarea name="comment" id="comment" cols="50" rows="5"></textarea>
+        </label>
+        <input type="submit" value="submit" id="sub">
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        *{
+            font-family: sans-serif;
+        }
+        table{
+            border: 1px solid black;
+            text-align: center;
+        }
+        .otherPlans{
+            width: 600px;
+        }
+    </style>
+
+    <title>Travel Dashboard</title>
+</head>
+<body>
+    <div class="container">
+        <a href="/travels/logout">Logout</a>
+        <h1>Hello, {{request.session.name}}!</h1>
+        <div class="schedules">
+            <h3>Your Trip Schedules</h3>
+            <table>
+                <tr>
+                    <th>Destination</th>
+                    <th>Travel Start Date</th>
+                    <th>Travel End Date</th>
+                    <th>Plan</th>
+                </tr>
+                {% for info in joinedTrips %}
+                    {% if info.member_id == request.session.user_id %}
+                <tr>
+                    <td><a href="/travels/destination/{{info.trip.id}}">{{info.trip.destination}}</a></td>
+                    <td>{{info.trip.dateFrom}}</td>
+                    <td>{{info.trip.dateTo}}</td>
+                </tr>
+                    {% endif %}    
+            {% endfor %}
+            {% for trip in myTrips %}
+                <tr>
+                    <td><a href="/travels/destination/{{trip.id}}">{{trip.destination}}</a></td>
+                    <td>{{trip.dateFrom}}</td>
+                    <td>{{trip.dateTo}}</td>
+                    <td>{{trip.dec}}</td>
+                </tr>
+            {% endfor %}
+            </table>
+        </div>
+        <div class="otherPlans">
+            <h3>Other User's Travel Plans</h3>
+            <table>
+                <tr>
+                    <th>Name</th>
+                    <th>Destination</th>
+                    <th>Travel Start Date</th>
+                    <th>Travel End Date</th>
+                    <th>Do You Want To Join?</th>
+                </tr>
+            {% for trip in otherTrips %}
+                {% if request.session.user_id != trip.trip.member_id %}
+                <tr>
+                        <td>{{trip.creator.first_name}}</td>
+                        <td><a href="/travels/destination/{{trip.id}}">{{trip.destination}}</a></td>
+                        <td>{{trip.dateFrom}}</td>
+                        <td>{{trip.dateTo}}</td>
+                        <td><a href="/travels/join/{{trip.id}}">Join</a></td>
+                </tr>
+                {% endif %}
+            {% endfor%}
+            </table>
+            {% if messages %}
+                <ul class="messages">
+                {% for message in messages %}
+                    <li>{{ message }}</li>
+                {% endfor %}
+                </ul>
+                {% endif %}
+        </div>
+        <h2><a href="/travels/add">Add Travel Plan</a></h2>
+    </div>
+</body>
+</html>

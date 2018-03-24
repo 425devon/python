@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit User</title>
+</head>
+<body>
+    <div class="container">
+        <form action="/rest/{{users.id}}/update" method="post">
+            {% csrf_token %}
+
+            <label for="first_name">First Name:<input type="text" name="first_name" id="first_name"></label>
+            <label for="last_name">Last Name:<input type="text" name="last_name" id="last_name"></label>
+            <label for="email">Email:<input type="email" name="email" id="email"></label>
+            <input type="submit" value="Update">
+            <a href="/rest/show">Show</a> |
+            <a href="/rest">Go Back</a>
+        </form>
+    </div>
+</body>
+</html>
